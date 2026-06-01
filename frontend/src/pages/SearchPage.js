@@ -6,7 +6,7 @@ import axios from 'axios';
 import NewsCard from '../components/NewsCard';
 import './SearchPage.css';
 
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const BASE_URL = 'https://noticol.onrender.com/api';
 
 const SearchPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
