@@ -7,13 +7,14 @@ const useNews = (endpoint = '', params = {}) => {
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const paramsStr = JSON.stringify(params);
 
     const fetchNews = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
             const url = `${BASE_URL}/news${endpoint ? '/' + endpoint : ''}`;
-            const response = await axios.get(url, { params });
+            const response = await axios.get(url, { params: JSON.parse(paramsStr) });
             setNews(response.data || []);
         } catch (err) {
             setError('No se pudieron cargar las noticias.');
@@ -21,7 +22,7 @@ const useNews = (endpoint = '', params = {}) => {
         } finally {
             setLoading(false);
         }
-    }, [endpoint, JSON.stringify(params)]);
+    }, [endpoint, paramsStr]);
 
     useEffect(() => {
         fetchNews();
