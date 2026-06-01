@@ -1,0 +1,223 @@
+.news-card {
+  background: var(--surface-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.5s ease both;
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .news-card {
+  background: var(--surface-dark);
+  border-color: var(--border-dark);
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Image wrap */
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.card-image-wrap.small {
+  width: 120px;
+  min-width: 120px;
+  aspect-ratio: 1/1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .card-image-wrap img {
+  transform: scale(1.06);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Category badge */
+.card-category {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.card-category.small {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+}
+
+/* Card body */
+.card-body {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-light);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s;
+}
+
+body.dark-mode .card-title {
+  color: var(--text-dark);
+}
+
+.news-card:hover .card-title {
+  color: var(--primary);
+}
+
+.card-title.sm {
+  font-size: 0.88rem;
+  -webkit-line-clamp: 2;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted-light);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.dark-mode .card-desc {
+  color: var(--text-muted-dark);
+}
+
+/* Meta */
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card-source {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.card-time {
+  font-size: 0.75rem;
+  color: var(--text-muted-light);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+body.dark-mode .card-time {
+  color: var(--text-muted-dark);
+}
+
+/* Read more link */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 0.25rem;
+  transition: gap 0.2s ease;
+}
+
+.card-link:hover {
+  gap: 0.5rem;
+}
+
+/* Featured variant */
+.news-card.featured .card-image-wrap {
+  aspect-ratio: 16/10;
+}
+
+.news-card.featured .card-title {
+  font-size: 1.15rem;
+  -webkit-line-clamp: 2;
+}
+
+/* Horizontal variant */
+.news-card.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.news-card.horizontal .card-body {
+  padding: 0;
+  gap: 0.3rem;
+}
+
+.news-card.horizontal:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Skeleton */
+.news-card.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-line.short { width: 60%; }
+.skeleton-line.medium { width: 80%; }
+.skeleton-line.full { width: 100%; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .card-title { font-size: 0.92rem; }
+  .card-body { padding: 0.75rem; }
+  .news-card.horizontal .card-image-wrap.small { width: 90px; min-width: 90px; }
+  .news-card.featured .card-title { font-size: 1rem; }
+}
